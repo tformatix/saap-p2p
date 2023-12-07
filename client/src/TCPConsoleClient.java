@@ -34,14 +34,13 @@ public class TCPConsoleClient extends Thread {
             System.out.println("Enter Field (e.g. A2):");
 
             while (!socket.isClosed()) {
-                String sendMessage = consoleReader.readLine();
+                String field = consoleReader.readLine();
 
-                // TODO: tic tac toe logic
-                mTicTacToe.board = sendMessage;
+                mTicTacToe.takeInput(field);
 
                 // Output to Socket
-                socketPrint.println(sendMessage);
-                System.out.printf("-- CLIENT SENT %s --%n", sendMessage);
+                socketPrint.println(mTicTacToe.mBoard);
+                System.out.printf("-- CLIENT SENT %s --%n", mTicTacToe.mBoard);
             }
 
         } catch (UnknownHostException _e) {

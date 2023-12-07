@@ -1,4 +1,6 @@
 public class Main {
+    private final static char SYMBOL = 'X';
+
     private final static int PORT_SERVER = 1870;
 
     private final static String ADDRESS_PEER = "localhost";
@@ -8,7 +10,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        TicTacToe ticTacToe = new TicTacToe();
+        TicTacToe ticTacToe = new TicTacToe(SYMBOL);
 
         TCPConsoleServer server = new TCPConsoleServer(PORT_SERVER, ticTacToe);
         server.start();
