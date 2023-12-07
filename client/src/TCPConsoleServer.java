@@ -60,7 +60,7 @@ public class TCPConsoleServer extends Thread {
         String receivedMessage;
         while ((receivedMessage = socketReader.readLine()) != null) {
             System.out.printf("-- SERVER RECEIVED %s --%n", receivedMessage);
-            mTicTacToe.mBoard = receivedMessage;
+            mTicTacToe.takeInput(receivedMessage, true);
             mTicTacToe.printGrid();
         }
     }

@@ -29,16 +29,16 @@ public class TCPConsoleClient extends Thread {
                 PrintStream socketPrint = new PrintStream(socketOutputStream, true);
 
                 System.out.printf("-- CLIENT COMMUNICATION INITIATED with %s:%s --%n", mAddress, mPort);
-                System.out.println("Enter Field (e.g. A2):");
 
                 while (!socket.isClosed()) {
+                    System.out.println("Enter Field (e.g. A2):");
                     String field = consoleReader.readLine();
 
-                    mTicTacToe.takeInput(field);
+                    mTicTacToe.takeInput(field, false);
 
                     // Output to Socket
-                    socketPrint.println(mTicTacToe.mBoard);
-                    System.out.printf("-- CLIENT SENT %s --%n", mTicTacToe.mBoard);
+                    socketPrint.println(field);
+                    System.out.printf("-- CLIENT SENT %s --%n", field);
                 }
             }
 
