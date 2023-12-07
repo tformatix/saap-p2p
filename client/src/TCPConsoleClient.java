@@ -21,26 +21,25 @@ public class TCPConsoleClient extends Thread {
         try {
             BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in)); // Input from Console
 
-            socket = new Socket(mAddress, mPort);
+            if(consoleReader.readLine().equals("connect")) {
+                socket = new Socket(mAddress, mPort);
 
-            // ### OUTPUT ###
-            OutputStream socketOutputStream = socket.getOutputStream();
-            PrintStream socketPrint = new PrintStream(socketOutputStream, true);
-            // ### INPUT ###
-            InputStream socketInputStream = socket.getInputStream();
-            BufferedReader socketReader = new BufferedReader(new InputStreamReader(socketInputStream));
+                // ### OUTPUT ###
+                OutputStream socketOutputStream = socket.getOutputStream();
+                PrintStream socketPrint = new PrintStream(socketOutputStream, true);
 
-            System.out.printf("-- CLIENT COMMUNICATION INITIATED with %s:%s --%n", mAddress, mPort);
-            System.out.println("Enter Field (e.g. A2):");
+                System.out.printf("-- CLIENT COMMUNICATION INITIATED with %s:%s --%n", mAddress, mPort);
+                System.out.println("Enter Field (e.g. A2):");
 
-            while (!socket.isClosed()) {
-                String field = consoleReader.readLine();
+                while (!socket.isClosed()) {
+                    String field = consoleReader.readLine();
 
-                mTicTacToe.takeInput(field);
+                    mTicTacToe.takeInput(field);
 
-                // Output to Socket
-                socketPrint.println(mTicTacToe.mBoard);
-                System.out.printf("-- CLIENT SENT %s --%n", mTicTacToe.mBoard);
+                    // Output to Socket
+                    socketPrint.println(mTicTacToe.mBoard);
+                    System.out.printf("-- CLIENT SENT %s --%n", mTicTacToe.mBoard);
+                }
             }
 
         } catch (UnknownHostException _e) {
