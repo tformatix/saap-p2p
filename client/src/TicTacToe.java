@@ -20,11 +20,11 @@ public class TicTacToe {
 
     public void takeInput(String _field, boolean _isFromPeer) {
         if(!mIsWinnerDeclared) {
-            char symbol = _isFromPeer ? SYMBOL : SYMBOL_PEER;
+            char symbol = _isFromPeer ? SYMBOL_PEER : SYMBOL;
             char[] arr = mBoard.toCharArray();
 
             int idx = fieldMap.getOrDefault(_field, -1);
-            if (idx > 0) {
+            if (idx >= 0) {
                 arr[idx] = symbol;
             }
 
@@ -79,11 +79,11 @@ public class TicTacToe {
         char b3 = arr[14];
         char c3 = arr[16];
 
-        System.out.println("  | A  | B | C |");
+        System.out.println("  | A | B | C |");
         System.out.println("  ______________");
-        System.out.println("1 | " + a1 + "  | " + b1 + " | " + c1 + " |");
-        System.out.println("2 | " + a2 + "  | " + b2 + " | " + c2 + " |");
-        System.out.println("3 | " + a3 + "  | " + b3 + " | " + c3 + " |");
+        System.out.println("1 | " + a1 + " | " + b1 + " | " + c1 + " |");
+        System.out.println("2 | " + a2 + " | " + b2 + " | " + c2 + " |");
+        System.out.println("3 | " + a3 + " | " + b3 + " | " + c3 + " |");
         System.out.println("  ______________");
     }
 }
